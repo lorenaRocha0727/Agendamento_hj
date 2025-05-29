@@ -59,20 +59,20 @@
             pediatria: "Documentos: Certidão de nascimento da criança, documento do responsável. Convênio ou pagamento particular.",
             dermatologia: "Documentos: RG, CPF. Pode ser agendado direto. Convênios aceitos: Unimed, Bradesco Saúde.",
             ginecologia: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento da UBS ou particular."
-          anestesiologista: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento cardiologista, ou regulação."
+            anestesiologista: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento cardiologista, ou regulação."
             encaixe: "apenas se na requisição tiver dias ou data específica."
         };
 
         function mostrarInfo() {
             const esp = document.getElementById("especialidade").value;
-            const divInfo = document.getElementById("info");
+            const infoDiv = document.getElementById("info");
 
-            if (esp && requisitos[esp]) {
-                divInfo.innerText = requisitos[esp];
+            if (requisitos[especialidade]) {
+               infoDiv.innerText = requisitos[esp];
                 divInfo.style.display = "block";
             } else {
-                divInfo.innerText = "Por favor, selecione uma especialidade válida.";
-                divInfo.style.display = "block";
+                infoDiv.textContent = "Por favor, selecione uma especialidade válida.";
+                infoDiv.style.display = "block";
             }
         }
     </script>
