@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Hospitalar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        select, button {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .info {
+            background: #e6f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agendamento Hospitalar</h1>
+        <p>Selecione uma especialidade para ver os requisitos de agendamento:</p>
+
+        <select id="especialidade">
+            <option value="">-- Selecione --</option>
+            <option value="cardiologia">Cardiologia</option>
+            <option value="ortopedia">Ortopedia</option>
+            <option value="pediatria">Pediatria</option>
+            <option value="dermatologia">Dermatologia</option>
+            <option value="ginecologia">Ginecologia</option>
+        </select>
+
+        <button onclick="mostrarInfo()">Ver requisitos</button>
+
+        <div id="info" class="info" style="display:none;"></div>
+    </div>
+
+    <script>
+        const requisitos = {
+            cardiologia: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento médico. Convênios aceitos: Unimed, Amil, SulAmérica.",
+            ortopedia: "Documentos: RG, CPF. Sem necessidade de encaminhamento. Convênios aceitos: Todos.",
+            pediatria: "Documentos: Certidão de nascimento da criança, documento do responsável. Convênio ou pagamento particular.",
+            dermatologia: "Documentos: RG, CPF. Pode ser agendado direto. Convênios aceitos: Unimed, Bradesco Saúde.",
+            ginecologia: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento da UBS ou particular."
+          anestesiologista: Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento cardiologista, ou regulação."
+        };
+
+        function mostrarInfo() {
+            const esp = document.getElementById("especialidade").value;
+            const divInfo = document.getElementById("info");
+
+            if (esp && requisitos[esp]) {
+                divInfo.innerText = requisitos[esp];
+                divInfo.style.display = "block";
+            } else {
+                divInfo.innerText = "Por favor, selecione uma especialidade válida.";
+                divInfo.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
