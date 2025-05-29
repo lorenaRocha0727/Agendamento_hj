@@ -1,80 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atendimento Hospitalar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            padding: 20px;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        select, button {
-            padding: 10px;
-            width: 100%;
-            margin: 10px 0;
-        }
-        .info {
-            background: #e6f7ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento Hospitalar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0066cc;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .especialidade {
+      margin-bottom: 20px;
+    }
+
+    .especialidade h2 {
+      color: #333;
+    }
+
+    .especialidade ul {
+      padding-left: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004999;
+    }
+
+    .info {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e6f2ff;
+      border-left: 5px solid #0066cc;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Agendamento Hospitalar</h1>
-        <p>Selecione uma especialidade para ver os requisitos de agendamento:</p>
 
-        <select id="especialidade">
-            <option value="">-- Selecione --</option>
-            <option value="cardiologia">Cardiologia</option>
-            <option value="ortopedia">Ortopedia</option>
-            <option value="pediatria">Pediatria</option>
-            <option value="dermatologia">Dermatologia</option>
-            <option value="ginecologia">Ginecologia</option>
-            <option value="cardiologia">Cardiologia</option>
-            <option value="Encaixe">Encaixe</option>
+  <h1>Agendamento Hospitalar</h1>
+  <div class="container">
 
-        </select>
-
-        <button onclick="mostrarInfo()">Ver requisitos</button>
-
-        <div id="info" class="info" style="display:none;"></div>
+    <div class="especialidade">
+      <h2>Cardiologia</h2>
+      <ul>
+        <li>Documento com foto</li>
+        <li>Encaminhamento médico</li>
+        <li>Exames anteriores (se houver)</li>
+      </ul>
+      <button onclick="mostrarInfo('encaixeCardio')">Solicitar Encaixe</button>
+      <div id="encaixeCardio" class="info">
+        Encaixes disponíveis apenas às terças e quintas pela manhã.
+      </div>
     </div>
 
-    <script>
-        const requisitos = {
-            cardiologia: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento médico. Convênios aceitos: Unimed, Amil, SulAmérica.",
-            ortopedia: "Documentos: RG, CPF. Sem necessidade de encaminhamento. Convênios aceitos: Todos.",
-            pediatria: "Documentos: Certidão de nascimento da criança, documento do responsável. Convênio ou pagamento particular.",
-            dermatologia: "Documentos: RG, CPF. Pode ser agendado direto. Convênios aceitos: Unimed, Bradesco Saúde.",
-            ginecologia: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento da UBS ou particular."
-            anestesiologista: "Documentos: RG, CPF, Cartão SUS. Necessário encaminhamento cardiologista, ou regulação."
-            encaixe: "apenas se na requisição tiver dias ou data específica."
-        };
+    <div class="especialidade">
+      <h2>Ortopedia</h2>
+      <ul>
+        <li>Documento com foto</li>
+        <li>Cartão do SUS</li>
+      </ul>
+      <button onclick="mostrarInfo('encaixeOrto')">Solicitar Encaixe</button>
+      <div id="encaixeOrto" class="info">
+        Encaixes disponíveis apenas com laudo de emergência.
+      </div>
+    </div>
 
-        function mostrarInfo() {
-            const esp = document.getElementById("especialidade").value;
-            const infoDiv = document.getElementById("info");
+    <div class="especialidade">
+      <h2>Dermatologia</h2>
+      <ul>
+        <li>Documento com foto</li>
+        <li>Encaminhamento ou histórico de sintomas</li>
+      </ul>
+      <button onclick="mostrarInfo('encaixeDerma')">Solicitar Encaixe</button>
+      <div id="encaixeDerma" class="info">
+        Encaixes aos sábados com agendamento prévio de fila de espera.
+      </div>
+    </div>
 
-            if (requisitos[especialidade]) {
-               infoDiv.innerText = requisitos[esp];
-                divInfo.style.display = "block";
-            } else {
-                infoDiv.textContent = "Por favor, selecione uma especialidade válida.";
-                infoDiv.style.display = "block";
-            }
-        }
-    </script>
+    <hr>
+
+    <button onclick="mostrarInfo('exames')">Ver Informações de Exames</button>
+    <div id="exames" class="info">
+      <ul>
+        <li>Hemograma completo: 24 horas</li>
+        <li>Raio-X: 1 hora</li>
+        <li>Ressonância Magnética: 5 dias úteis</li>
+        <li>Ultrassom: 48 horas</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    function mostrarInfo(id) {
+      const div = document.getElementById(id);
+      div.style.display = div.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
 </body>
 </html>
